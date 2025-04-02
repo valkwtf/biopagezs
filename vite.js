@@ -2,32 +2,35 @@ const express = require('express');
 const axios = require('axios');
 
 const app = express();
-const PORT = process.env.PORT || 3000;
+const PORT = 3000;
 
-// Replace with your Discord webhook URL
-const DISCORD_WEBHOOK_URL = 'https://discord.com/api/webhooks/1356941695341563944/dPWIbkbLU3KcxoNadTC_Gr8PRTp3aiPh0NioCnQR53VG7HZK2n__HosyddAxL-w-ngtN';
+// Replace with your actual Discord webhook URL
+const DISCORD_WEBHOOK_URL = 'https://discord.com/api/webhooks/1356945272374169651/iY_dvKK4CAeSeOBU2f0nHdBD_XtcsK4f65s_CoZPnnrDbLy0Cg0lNRdt9Kjm-QbCXfO3';
 
 app.use((req, res, next) => {
-    const ip = req.headers['x-forwarded-for'] || req.socket.remoteAddress;
+  const visitorIp = req.ip;
 
-    // Send IP to Discord webhook
-    axios.post(DISCORD_WEBHOOK_URL, {
-        content: `New visitor IP: ${ip}`
-    })
-    .then(response => {
-        console.log('IP sent to Discord:', ip);
-    })
-    .catch(error => {
-        console.error('Error sending IP to Discord:', error.response ? error.response.data : error.message);
-    });
+  // Log the IP address
+  console.log(`Visitor IP: ${visitorIp}`);
 
-    next();
+  // Send the IP address to the Discord webhook
+  axios.post(DISCORD_WEBHOOK_URL, {
+    content: `New visitor IP: ${visitorIp}`
+  })
+  .then(response => {
+    console.log('Successfully sent IP to Discord webhook');
+  })
+  .catch(error => {
+    console.error('Error sending IP to Discord webhook', error);
+  });
+
+  next();
 });
 
 app.get('/', (req, res) => {
-    res.send('Welcome to the website!');
+  res.send('Hello, visitor!');
 });
 
 app.listen(PORT, () => {
-    console.log(`Server is running on port ${PORT}`);
+  console.log(`Server is running on port ${PORT}`);
 });
