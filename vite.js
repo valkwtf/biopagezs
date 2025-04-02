@@ -18,7 +18,7 @@ app.use((req, res, next) => {
         console.log('IP sent to Discord:', ip);
     })
     .catch(error => {
-        console.error('Error sending IP to Discord:', error);
+        console.error('Error sending IP to Discord:', error.response ? error.response.data : error.message);
     });
 
     next();
