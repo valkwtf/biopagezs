@@ -41,7 +41,7 @@ function App() {
           <h1 className="minecraft text-2xl text-center text-white mb-4">
             <Typewriter
               options={{
-                strings: ['Itskingkad'],
+                strings: ['Valkiezz'],
                 autoStart: true,
                 loop: true,
                 delay: 150,
@@ -54,9 +54,9 @@ function App() {
             <Typewriter
               options={{
                 strings: [
-                  'Data-Breacher',
-                  'Script Writer',
-                  'Graphic Designer',
+                  'I miss her...',
+                  'vluhrs is a femboy',
+                  'pls nitro',
                 ],
                 autoStart: true,
                 loop: true,
